@@ -34,6 +34,7 @@ let api_key = "RGAPI-13320ace-e222-4f7b-9334-f7e8b1297eb8";
 // }
 
 app.get('/api/summoner', (req, res) => {
+  console.log("server summ: " + summoner.name)
   res.send(summoner);
 });
 
@@ -44,6 +45,7 @@ app.post('/api/summoner', (req, res) => {
       id = id + 1;
       summoner = {id:id, name:info.name, lvl:info.summonerLevel, icon:info.profileIconId};
       // summoner = summoner;
+      console.log(summoner);
       res.send(summoner);
     }
     else {
