@@ -51,8 +51,24 @@
   <!-- <div v-for="summoner in summoners"> -->
     <hr>
     <div class="summoner">
-      <div  v-show="show" class="problem">
+      <div v-show="show" class="problem"> 
         <p><i>{{summoner.name}}: Level {{summoner.lvl}} <img src="" id="image"></img></i></p>
+        <p>Top Summoners: 
+          <ul>
+            <li class="undecorated">
+              {{ summoner.topChamps[0] }}
+              <img id="champImage1" src="" ></img>
+            </li>
+            <li class="undecorated">
+              {{ summoner.topChamps[1] }}
+              <img id="champImage2" src="" ></img>
+            </li>
+            <li class="undecorated">
+              {{ summoner.topChamps[2] }}
+              <img id="champImage3" src="" ></img>
+            </li>
+          </ul>
+        </p>
       </div>
       <div class="delete">
         <!-- <button v-on:click="deleteSummoner(summoner)" class="delete">Delete</button> -->

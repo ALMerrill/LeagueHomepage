@@ -46,6 +46,10 @@ input, textarea, select, button {
     margin: auto;
 }*/
 
+.undecorated {
+    list-style: none;
+}
+
 .summoner {
     display: flex;
 }
@@ -59,8 +63,15 @@ input, textarea, select, button {
 }
 
 #image {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-left: 20px;
+}
+
+#champImage1, #champImage2, #champImage3  {
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     margin-left: 20px;
 }
