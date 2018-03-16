@@ -42,7 +42,7 @@ app.post('/api/summoner', (req, res) => {
     if (!error && response.statusCode == 200) {
       var info = JSON.parse(body);
       id = id + 1;
-      let summoner = {id:id, name:info.name, lvl:info.summonerLevel, icon:info.profileIconId};
+      summoner = {id:id, name:info.name, lvl:info.summonerLevel, icon:info.profileIconId};
       // summoner = summoner;
       res.send(summoner);
     }
@@ -63,4 +63,4 @@ app.post('/api/summoner', (req, res) => {
 //   res.sendStatus(200);
 // });
 
-app.listen(3000, () => console.log('Server listening on port 3000!'))
+app.listen(3030, () => console.log('Server listening on port 3030!'))

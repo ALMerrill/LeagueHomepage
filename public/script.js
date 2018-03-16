@@ -12,22 +12,25 @@ var app = new Vue({
   },
   methods: {
     getSummoner: function() {
-      axios.get("http://" + this.uri + ":3000/api/summoner").then(response => {
+      axios.get("http://" + this.uri + ":3030/api/summoner").then(response => {
         this.summoner = response.data;
         return true;
       }).catch(err => {
       });
     },
     addSummoner: function() {
-      axios.post("http://" + this.uri + ":3000/api/summoner", {
+      axios.post("http://" + this.uri + ":3030/api/summoner", {
         name: this.addedName,
       }).then(response => {
         let icon = response.data.icon;
-        document.getElementById('image').src = 'img/' + String(icon) + '.png';
-        document.getElementById('image').src;
+        this.show = true;
+        elem = document.getElementById('image');
+        path = 'img/' + String(icon) + '.png';
+        if(typeof elem !== 'undefined' && elem !== null) {
+          document.getElementById('image').src = 'img/' + String(icon) + '.png';
+        }
         this.addedName = "";
         this.getSummoner();
-        this.show = true;
         return true;
       }).catch(err => {
       });
@@ -41,3 +44,5 @@ var app = new Vue({
     // }
   }
 });
+
+//http://" + this.uri + ":3030

@@ -51,8 +51,8 @@
   <!-- <div v-for="summoner in summoners"> -->
     <hr>
     <div class="summoner">
-      <div v-if="show" class="problem">
-        <p><i>{{summoner.name}}: Level {{summoner.lvl}} <img src="img/10.png" id="image"></img></i></p>
+      <div  v-show="show" class="problem">
+        <p><i>{{summoner.name}}: Level {{summoner.lvl}} <img src="" id="image"></img></i></p>
       </div>
       <div class="delete">
         <!-- <button v-on:click="deleteSummoner(summoner)" class="delete">Delete</button> -->
