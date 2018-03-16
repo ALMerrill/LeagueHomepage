@@ -24,17 +24,16 @@ let api_key = "RGAPI-13320ace-e222-4f7b-9334-f7e8b1297eb8";
 //   }
 // });
 
-// for(let i = 10000; i < 20000; i++) {
+for(let i = 1449; i < 3000; i++) {
   
-//   http.get("http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/" + String(i) + ".png ", function(res) {
-//     if (res.statusCode == 200) {
-//       res.pipe(fs.createWriteStream("public/img/" + String(i) + ".png"));
-//     }
-//   });
-// }
+  http.get("http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/" + String(i) + ".png ", function(res) {
+    if (res.statusCode == 200) {
+      res.pipe(fs.createWriteStream("public/img/" + String(i) + ".png"));
+    }
+  });
+}
 
 app.get('/api/summoner', (req, res) => {
-  console.log("server summ: " + summoner.name)
   res.send(summoner);
 });
 
@@ -45,7 +44,6 @@ app.post('/api/summoner', (req, res) => {
       id = id + 1;
       summoner = {id:id, name:info.name, lvl:info.summonerLevel, icon:info.profileIconId};
       // summoner = summoner;
-      console.log(summoner);
       res.send(summoner);
     }
     else {

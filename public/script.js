@@ -12,36 +12,24 @@ var app = new Vue({
   },
   methods: {
     getSummoner: function() {
-      console.log("getting");
       axios.get("/api/summoner").then(response => {
         this.summoner = response.data;
-        console.log("Summoner: " + this.summoner);
         return true;
       }).catch(err => {
       });
     },
     addSummoner: function() {
-      console.log("adding");
       axios.post("/api/summoner", {
         name: this.addedName,
       }).then(response => {
         let icon = response.data.icon;
-        console.log(response.data.name);
-        console.log("1");
-        console.log("showing");
         this.show = true;
         elem = document.getElementById('image');
         path = 'img/' + String(icon) + '.png';
-        console.log(path);
         if(typeof elem !== 'undefined' && elem !== null) {
-          console.log("found");
           document.getElementById('image').src = 'img/' + String(icon) + '.png';
         }
-        else
-          console.log('not found');
-        console.log("2");
         this.addedName = "";
-        console.log("getSummoner");
         this.getSummoner();
         return true;
       }).catch(err => {
