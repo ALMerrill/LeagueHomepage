@@ -2,38 +2,42 @@ var app = new Vue({
   el: '#app',
   data: {
     addedName: '',
-    summoners: {},
-    sommoner: {},
+    // summoners: {},
+    summoner: {},
     uri: 'localhost',
+    show: false,
   },
   created: function() {
-    this.getSummoners();
+    this.getSummoner();
   },
   methods: {
-    getSummoners: function() {
-      axios.get("http://" + this.uri + ":3000/api/summoners").then(response => {
-        this.summoners = response.data;
+    getSummoner: function() {
+      axios.get("http://" + this.uri + ":3000/api/summoner").then(response => {
+        this.summoner = response.data;
         return true;
       }).catch(err => {
       });
     },
     addSummoner: function() {
-      axios.post("http://" + this.uri + ":3000/api/summoners", {
+      axios.post("http://" + this.uri + ":3000/api/summoner", {
         name: this.addedName,
       }).then(response => {
-        console.log(response.data);
+        let icon = response.data.icon;
+        document.getElementById('image').src = 'img/' + String(icon) + '.png';
+        document.getElementById('image').src;
         this.addedName = "";
-        this.getSummoners();
+        this.getSummoner();
+        this.show = true;
         return true;
       }).catch(err => {
       });
     },
-    deleteSummoner: function(summoner) {
-      axios.delete("http://" + this.uri + ":3000/api/summoners/" + summoner.id).then(response => {
-        this.getSummoners();
-        return true;
-      }).catch(err => {
-      });
-    }
+    // deleteSummoner: function(summoner) {
+    //   axios.delete("http://" + this.uri + ":3000/api/summoner/" + summoner.id).then(response => {
+    //     this.getSummoner();
+    //     return true;
+    //   }).catch(err => {
+    //   });
+    // }
   }
 });

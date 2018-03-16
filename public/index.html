@@ -1,34 +1,71 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css"/>
-    <title>Summoning</title>
-  </head>
-  <body>
-    <div id="app">
-      <h1>Sommoning</h1>
-      <form v-on:submit.prevent="addSummoner">
-	<input v-model="addedName" placeholder="Name"></p>
-	<br/>
-	<button type="submit">Search</button>
-      </form>
-      <h3>Summoners</h3>
-      <div v-for="summoner in summoners">
-	<hr>
-	<div class="summoner">
-	  <div class="problem">
-	    <p><i>{{summoner.name}}: Level {{summoner.lvl}}</i></p>
-	  </div>
-	  <div class="delete">
-	    <button v-on:click="deleteSummoner(summoner)" class="delete">Delete</button>
-	  </div>
-	</div>
-      </div>
+<head>
+  <title>Summoner Search</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css"/>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js" integrity="sha256-pU9euBaEcVl8Gtg+FRYCtin2vKLN8sx5/4npZDmY2VA=" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
 
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">My Homepage</a>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js" integrity="sha256-pU9euBaEcVl8Gtg+FRYCtin2vKLN8sx5/4npZDmY2VA=" crossorigin="anonymous"></script>
-    <script src="/script.js"></script>
-  </body>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <!-- <li class="active"><a href="#">Home</a></li>
+        <li><a href="cal.html">Calendar</a></li>
+        <li><a href="trivia.html">Trivia</a></li> -->
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+<div id="app">
+  <h1>Summoner Search</h1>
+  <form v-on:submit.prevent="addSummoner">
+    <input v-model="addedName" placeholder="Summoner Name"></p>
+    <br/>
+    <button class="centered" type="submit">Search</button>
+  </form>
+  <h3 class="centered">Summoner</h3>
+  <!-- <div v-for="summoner in summoners"> -->
+    <hr>
+    <div class="summoner">
+      <div v-if="show" class="problem">
+        <p><i>{{summoner.name}}: Level {{summoner.lvl}} <img src="img/10.png" id="image"></img></i></p>
+      </div>
+      <div class="delete">
+        <!-- <button v-on:click="deleteSummoner(summoner)" class="delete">Delete</button> -->
+      </div>
+    </div>
+  <!-- </div> -->
+</div>
+</div>
+
+<footer class="container-fluid text-center">
+  <a href="https://github.com/ALMerrill/MyHomepage">Github</a>
+</footer>
+
+<script src="/script.js"></script>
+</body>
 </html>

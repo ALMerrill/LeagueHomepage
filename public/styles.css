@@ -1,7 +1,7 @@
 body {
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
-    padding: 20px 100px 0px 100px;
+    /*padding: 20px 100px 0px 100px;*/
     background: #f3f3f3;
 }
 
@@ -16,6 +16,36 @@ input, textarea, select, button {
     font-size: 1em;
 }
 
+/*#app {
+    position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 30vw;
+  height: 30vw;
+  background-color: #ccc;
+  border-radius: 3px;}*/
+
+/*input {
+    width: 15vw;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-bottom: 50px;
+}
+
+.centered {
+    width: 8vw;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-top: :100px;
+    margin: auto;
+}*/
+
 .summoner {
     display: flex;
 }
@@ -26,4 +56,39 @@ input, textarea, select, button {
 
 .delete {
     flex: 1;
+}
+
+#image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-left: 20px;
+}
+
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+header {
+    background-color: blue;
+}
+
+form {
+    width: 300px;
+}
+
+.form-horizontal{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+footer {
+  position:absolute;
+  bottom:0;
+  width:100%;
+  background-color: #555;
+  color: white;
+  padding: 15px;
 }
