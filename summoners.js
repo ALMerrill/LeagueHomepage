@@ -13,9 +13,8 @@ app.use("img", express.static(__dirname + '/img'));
 app.use(express.static('public'));
 
 var summoner = {};
-let id = 0;
 var topChamps;
-let api_key = "RGAPI-13320ace-e222-4f7b-9334-f7e8b1297eb8";
+let api_key = "RGAPI-3ed249ee-abb4-418f-b601-d179644f8937";
 
 // request("https://na1.api.riotgames.com/lol/static-data/v3/profile-icons?api_key=RGAPI-b3619dbd-6b7a-4851-88d3-d531fbeead88", function(error, response, body) {
 //   if (!error && response.statusCode == 200) {
@@ -45,8 +44,8 @@ app.post('/api/summoner', (req, res) => {
   request('https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + req.body.name + '?api_key=' + api_key, function (error, response, body) {
     if (!error && response.statusCode == 200) {
       infoSummoner = JSON.parse(body);
-      id = id + 1;
-      summoner = {id:id, name:infoSummoner.name, lvl:infoSummoner.summonerLevel, icon:infoSummoner.profileIconId};
+      // console.log(infoSummoner);
+      summoner = {name:infoSummoner.name, lvl:infoSummoner.summonerLevel, icon:infoSummoner.profileIconId};
     }
     else {
       console.log("Summoner: " + response.body);
@@ -62,23 +61,16 @@ app.post('/api/summoner', (req, res) => {
       request('https://na1.api.riotgames.com/lol/static-data/v3/champions?api_key=' + api_key, function(error, response, body) {
         if(!error && response.statusCode == 200) {
           infoChamps = JSON.parse(body);
-          var topChampNames = [];
-          console.log('1');
+          var topChampNames = ["", "", ""];
           for(let champ in infoChamps.data) {
             if(infoChamps.data[champ].id == topChamps[0]) {
-              topChampNames.push(champ);
+              topChampNames[0] = champ;
             }
-          }
-          console.log('2');
-          for(let champ in infoChamps.data) {
-            if(infoChamps.data[champ].id == topChamps[1]) {
-              topChampNames.push(champ);
+            else if(infoChamps.data[champ].id == topChamps[1]) {
+              topChampNames[1] = champ;
             }
-          }
-          console.log('3');
-          for(let champ in infoChamps.data) {
-            if(infoChamps.data[champ].id == topChamps[2]) {
-              topChampNames.push(champ);
+            else if(infoChamps.data[champ].id == topChamps[2]) {
+              topChampNames[2] = champ;
             }
           }
           summoner.topChamps = topChampNames;
