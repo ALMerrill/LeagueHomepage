@@ -16,14 +16,6 @@ var summoner = {};
 var topChamps;
 let api_key = "RGAPI-3ed249ee-abb4-418f-b601-d179644f8937";
 
-// request("https://na1.api.riotgames.com/lol/static-data/v3/profile-icons?api_key=RGAPI-b3619dbd-6b7a-4851-88d3-d531fbeead88", function(error, response, body) {
-//   if (!error && response.statusCode == 200) {
-//     var info = JSON.parse(body);
-//     let icon = info.image;
-//     console.log(icon);
-//   }
-// });
-
 // for(let i = 1449; i < 3000; i++) {
   
 //   http.get("http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/" + String(i) + ".png", function(res) {

@@ -10,6 +10,9 @@ var app = new Vue({
   created: function() {
     this.getSummoner();
   },
+  mounted: function() {
+    this.getSummoner();
+  },
   methods: {
     getSummoner: function() {
       axios.get("/api/summoner").then(response => {
