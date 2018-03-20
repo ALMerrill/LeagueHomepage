@@ -56,16 +56,16 @@
         <p>Top 3 Champions: 
           <ul v-show="show">
             <li class="undecorated">
-              <p>{{ summoner.topChamps[0] }}
-              <img id="champImage1" src="" ></img></p>
+              <p v-if="show"><p>{{ summoner.topChamps[0] }}
+              <img id="champImage1" src="" ></img></p></p>
             </li>
             <li class="undecorated">
-              <p>{{ summoner.topChamps[1] }}
-              <img id="champImage2" src="" ></img></p>
+              <p v-if="show"><p>{{ summoner.topChamps[1] }}
+              <img id="champImage2" src="" ></img></p></p>
             </li>
             <li class="undecorated">
-              <p>{{ summoner.topChamps[2] }}
-              <img id="champImage3" src="" ></img></p>
+              <p v-if="show"><p>{{ summoner.topChamps[2] }}
+              <img id="champImage3" src="" ></img></p></p>
             </li>
           </ul>
         </p>
