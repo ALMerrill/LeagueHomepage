@@ -14,7 +14,7 @@ app.use(express.static('public'));
 
 var summoner = {};
 var topChamps;
-let api_key = "RGAPI-0e30abaa-4e0f-428b-be13-2f00a351d539";
+let api_key = "RGAPI-056ad80b-2e7a-4f76-93da-ece2a552fe58";
 
 // for(let i = 1449; i < 3000; i++) {
   
