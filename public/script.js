@@ -16,6 +16,11 @@ var app = new Vue({
   methods: {
     getSummoner: function() {
       axios.get("/api/summoner").then(response => {
+        // if(response.data.name != "-1"){
+        //   console.log(response.data.name);
+        //   this.summoner = response.data;
+        //   this.show = true;
+        // }
         this.summoner = response.data;
         return true;
       }).catch(err => {

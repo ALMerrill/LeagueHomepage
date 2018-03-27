@@ -12,9 +12,9 @@ app.use("img", express.static(__dirname + '/img'));
 
 app.use(express.static('public'));
 
-var summoner = {};
+var summoner = {name:"-1"};
 var topChamps;
-let api_key = "RGAPI-056ad80b-2e7a-4f76-93da-ece2a552fe58";
+let api_key = "RGAPI-8c0ef0d6-0f34-43d4-9361-f6b459d358c3";
 
 // for(let i = 1449; i < 3000; i++) {
   
