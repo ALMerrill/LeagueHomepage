@@ -8,24 +8,24 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use("img", express.static(__dirname + '/img'));
-
-
 app.use(express.static('public'));
+
+// Knex Setup
+const env = process.env.NODE_ENV || 'development';
+const config = require('./knexfile')[env];  
+const db = require('knex')(config);
 
 var summoner = {name:"-1"};
 var topChamps;
-let api_key = "RGAPI-8c0ef0d6-0f34-43d4-9361-f6b459d358c3";
-
-// for(let i = 1449; i < 3000; i++) {
-  
-//   http.get("http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/" + String(i) + ".png", function(res) {
-//     if (res.statusCode == 200) {
-//       res.pipe(fs.createWriteStream("public/img/" + String(i) + ".png"));
-//     }
-//   });
-// }
+let api_key = "RGAPI-d7b7f1a1-f3b3-4c63-b18f-2a7c22ebd116";
 
 app.get('/api/summoner', (req, res) => {
+  // db('league').select().from('summoners').then(summoners => {
+  //   res.send(summoners);
+  // }).catch(error => {
+  //   res.status(500).json({ error });
+  // });
+
   res.send(summoner);
 });
 
@@ -66,6 +66,12 @@ app.post('/api/summoner', (req, res) => {
             }
           }
           summoner.topChamps = topChampNames;
+          // db('summoners').insert({name:summoner.name, lvl:summoner.lvl, icon:summoner.icon, topChamp1:topChamps[0], topChamp2:topChamps[1], topChamp3:topChamps[2], created_at: new Date()}).then(summoner => {
+          //   res.status(200).json({id:summoner[0]});
+          // }).catch(error => {
+          //   console.log(error);
+          //   res.status(500).json({ error });
+          // });
           res.send(summoner);
         }
         else {
