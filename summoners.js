@@ -17,7 +17,7 @@ const db = require('knex')(config);
 
 var summoner = {name:"-1"};
 var topChamps;
-let api_key = "RGAPI-d7b7f1a1-f3b3-4c63-b18f-2a7c22ebd116";
+let api_key = "RGAPI-e7aef6bb-c596-4b0d-9a94-13115b3a599f";
 
 app.get('/api/summoner', (req, res) => {
   // db('league').select().from('summoners').then(summoners => {
