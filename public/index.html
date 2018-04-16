@@ -16,66 +16,86 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">League Of Legends Homepage</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <!-- <li class="active"><a href="#">Home</a></li>
-        <li><a href="cal.html">Calendar</a></li>
-        <li><a href="trivia.html">Trivia</a></li> -->
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <!-- <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
-      </ul>
-    </div>
-  </div>
-</nav>
 
-<div class="container-fluid">
 <div id="app">
-  <h1>Summoner Search</h1>
-  <form v-on:submit.prevent="addSummoner">
-    <input v-model="addedName" placeholder="Summoner Name"></p>
-    <br/>
-    <button class="centered" type="submit">Search</button>
-  </form>
-  <h3 class="centered">Summoner</h3>
-  <!-- <div v-for="summoner in summoners"> -->
-    <hr>
-    <div class="summoner">
-      <div v-show="show" class="problem"> 
-        <p><i>{{summoner.name}}: Level {{summoner.lvl}} <img src="" id="image"></img></i></p>
-        <p>Top 3 Champions: 
-          <ul v-show="show">
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="#">League Of Legends Homepage</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <!-- <li class="active"><a href="#">Home</a></li>
+          <li><a href="cal.html">Calendar</a></li>
+          <li><a href="trivia.html">Trivia</a></li> -->
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li v-if="loggedIn">
+          </li>
+          <li class="login_list" v-else>
+           <form v-on:submit.prevent="login">
+             <input v-model="username" placeholder="Username">
+             <input v-model="password" type="password" placeholder="Password">
+             <button class="primary" type="submit">Login</button>
+           </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="container-fluid">
+    <div v-if="loggedIn">
+      <h1>Summoner Search</h1>
+      <form v-on:submit.prevent="addSummoner">
+        <input v-model="addedName" placeholder="Summoner Name"></p>
+        <br/>
+        <button class="centered" type="submit">Search</button>
+      </form>
+      <h3 class="centered">Summoner</h3>
+      <!-- <div v-for="summoner in summoners"> -->
+      <hr>
+      <div v-if="show" class="summoner">
+        <div class="problem"> 
+          <p><i>{{summoner.name}}: Level {{summoner.lvl}} <img src="" id="image"></img></i></p>
+          <p>Top 3 Champions: 
+          <ul>
             <li class="undecorated">
-              <div v-if="show"><p>{{ summoner.topChamps[0] }}
+              <div ><p>{{ summoner.topChamps[0] }}
               <img id="champImage1" src="" ></img></p></div>
             </li>
             <li class="undecorated">
-              <div v-if="show"><p>{{ summoner.topChamps[1] }}
+              <div ><p>{{ summoner.topChamps[1] }}
               <img id="champImage2" src="" ></img></p></div>
             </li>
             <li class="undecorated">
-              <div v-if="show"><p>{{ summoner.topChamps[2] }}
+              <div ><p>{{ summoner.topChamps[2] }}
               <img id="champImage3" src="" ></img></p></div>
             </li>
           </ul>
-        </p>
-      </div>
-      <div class="delete">
-        <!-- <button v-on:click="deleteSummoner(summoner)" class="delete">Delete</button> -->
+          </p>
+        </div>
       </div>
     </div>
-  <!-- </div> -->
-</div>
+    <div v-else>
+      <form v-on:submit.prevent="register" class="register">
+        <p>1. Choose a user name.</p>
+        <input class="narrow" v-model="username" placeholder="User Name">
+        <p>2. Create an account.</p>
+        <input class="wide" v-model="name" placeholder="First and Last Name"><br/>
+        <input class="narrow" v-model="email" placeholder="Email Address">
+        <input class="narrow" type="password" v-model="password" placeholder="Password">
+        <button class="alternate" type="submit">Register</button>
+      </form>
+    </div>
+  </div>
 </div>
 
 <footer class="container-fluid text-center">

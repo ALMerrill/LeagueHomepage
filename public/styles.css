@@ -89,10 +89,24 @@ form {
     width: 300px;
 }
 
+.register {
+  margin-left:30px;
+}
+
 .form-horizontal{
     display:block;
     margin-left:auto;
     margin-right:auto;
+}
+
+/*.right {
+  float: right;
+}*/
+
+.login_list {
+  display:inline-block;
+  float: right;
+  margin-right: 1px;
 }
 
 footer {
