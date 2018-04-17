@@ -38,7 +38,7 @@ function sleep(ms) {
 }
 
 const verifyToken = (req, res, next) => {
-  const token = req.headers['authorization'];
+  var token = req.headers['authorization'];
   if (!token)
     token = req.body.headers['Authorization'];
   if (!token){
