@@ -12,6 +12,7 @@ var app = new Vue({
     password: "",
     email: "",
     name: "",
+    user: {},
   },
   created: function() {
     this.getSummoner();
@@ -21,15 +22,31 @@ var app = new Vue({
     this.getSummoner();
   },
   computed: {
-    loggedIn: function() {
-      if (this.token === '')
-        return false;
+    loggedIn: function(){
+      if (this.token === '' || this.token === "")
+       return false;
       return true;
-    }
+    },
   },
   methods: {
+    user: function() {
+      return this.user;
+    },
+    setUser: function(user) {
+      this.user = user;
+    },
+    getToken: function() {
+      return this.token;
+    },
+    setToken: function(token) {
+      this.token = token;
+      if (token === '')
+        localStorage.removeItem('token');
+      else
+        localStorage.setItem('token', token);
+    },
     getAuthHeader: function() {
-      return { headers: {'Authorization': this.token}};
+      return {headers: {'Authorization': localStorage.getItem('token'), 'name':this.addedName}};
     },
     getSummoner: function() {
       axios.get("/api/summoner").then(response => {
@@ -45,9 +62,9 @@ var app = new Vue({
     },
     addSummoner: function() {
       axios.post("/api/summoner", this.getAuthHeader()).then(response => {
-        name: this.addedName.toLowerCase()
-      }).then(response => {
-        console.log("response");
+        // name: this.addedName.toLowerCase();
+      // }).then(response => {
+        console.log("response: " + response);
       // str = JSON.stringify(response.data);
       // str = JSON.stringify(response.data, null, 4); // (Optional) beautiful indented output.
       // console.log(str);
@@ -84,11 +101,13 @@ var app = new Vue({
     login: function() {
       axios.post("/api/login",{username: this.username, password: this.password}).then(response => {
         // this.logged_in = true;
-        this.token = response.data.token;
+        this.setUser(response.data.user);
+        this.setToken(response.data.token);
         // this.username = response.data.user.username;
         // this.password = response.data.user.password;
       }).catch(error => {
-        this.token = '';
+        this.setUser({});
+        this.setToken('');
         console.log("Login error: " + error);
         return;
       });
@@ -96,13 +115,15 @@ var app = new Vue({
     register: function() {
       axios.post("/api/users",{email: this.email, username: this.username, password: this.password, name: this.name, }).then(response => {
         // this.logged_in = true;
-        this.token = response.data.token;
+        this.setUser(response.data.user);
+        this.setToken(response.data.token);
         // context.commit('setUser', response.data.user);
         // context.commit('setLogin',true);
         // context.commit('setRegisterError',"");
         // context.commit('setLoginError',"");
       }).catch(error => {
-        this.token = ''
+        this.setToken('');
+        this.setUser({});
         console.log("Register error: " + error);
         // context.commit('setLoginError',"");
         // context.commit('setLogin',false);
@@ -117,17 +138,21 @@ var app = new Vue({
       });
     },
     logout: function() {
-      this.token = '';
+      this.setToken('');
     },
     // Initialize //
-    initialize() {
-      let token = this.token;
+    initialize(context) {
+      let token = localStorage.getItem('token');
       if(token) {
        // see if we can use the token to get my user account
        axios.get("/api/me", this.getAuthHeader()).then(response => {
-        this.token = token;
+        this.setToken(token);
+        this.setUser(response.data.user);
        }).catch(err => {
-        this.token = '';
+         // remove token and user from state
+         localStorage.removeItem('token');
+         this.setUser({});
+         this.setToken('');
        });
       }
     },

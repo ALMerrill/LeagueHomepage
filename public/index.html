@@ -37,6 +37,11 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li v-if="loggedIn">
+            <p>
+              <button v-on:click="logout" type="button" class="btn btn-default btn-sm">
+                  <span class="glyphicon glyphicon-log-out"></span> Log out
+              </button>
+            </p>
           </li>
           <li class="login_list" v-else>
            <form v-on:submit.prevent="login">

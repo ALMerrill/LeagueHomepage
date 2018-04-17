@@ -39,6 +39,8 @@ function sleep(ms) {
 
 const verifyToken = (req, res, next) => {
   const token = req.headers['authorization'];
+  if (!token)
+    token = req.body.headers['Authorization'];
   if (!token){
     console.log("No token provided");
     return res.status(403).send({ error: 'No token provided.' });
@@ -76,11 +78,16 @@ app.post('/api/summoner', verifyToken, (req, res) => {
   //   res.status(500).json({ error });
   // });
 
-  //Check if summoner is in database  
-  db('summoners').where('name', req.body.name).first().then(summoner => {
+  // str = JSON.stringify(req.body.headers);
+  // str = JSON.stringify(req.body.headers, null, 4); // (Optional) beautiful indented output.
+  // console.log("REQ: " + str);
+  console.log("NAME: " + req.body.headers.name);
+
+  //Check if summoner is in database 
+  db('summoners').where('name', req.body.headers.name).first().then(summoner => {
     if (summoner === undefined) {
 
-      request('https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + req.body.name + '?api_key=' + api_key, function (error, response, body) {
+      request('https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + req.body.headers.name + '?api_key=' + api_key, function (error, response, body) {
         if (!error && response.statusCode == 200) {
           infoSummoner = JSON.parse(body);
           // console.log(infoSummoner);
@@ -153,7 +160,7 @@ app.post('/api/summoner', verifyToken, (req, res) => {
         // str = JSON.stringify(new_summoner);
         // str = JSON.stringify(new_summoner, null, 4); // (Optional) beautiful indented output.
         // console.log("new: " + str); // Logs output to dev tools console.
-
+        // res.status(200).json({new_summoner});
         res.send(new_summoner);
       }).catch(error => {
         console.log("Summoner not selected");
