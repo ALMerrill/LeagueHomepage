@@ -30,8 +30,8 @@ if (jwtSecret === undefined) {
 
 var summoner = {name:"-1"};
 var topChamps;
-let api_key = "RGAPI-100858eb-f925-462a-933b-20286c607dd0";
-// let api_key = "RGAPI-e7aef6bb-c596-4b0d-9a94-13115b3a599f"; //permanent
+// let api_key = "RGAPI-100858eb-f925-462a-933b-20286c607dd0";
+let api_key = "RGAPI-e7aef6bb-c596-4b0d-9a94-13115b3a599f"; //permanent
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
